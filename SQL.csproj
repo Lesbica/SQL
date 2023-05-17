@@ -56,22 +56,106 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dbManager.cs" />
-    <Compile Include="Main.cs">
+    <Compile Include="Forms\Analysis Orders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="Forms\Analysis Orders.Designer.cs">
+      <DependentUpon>Analysis Orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Analysis Type.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Analysis Type.Designer.cs">
+      <DependentUpon>Analysis Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Analysis.Designer.cs">
+      <DependentUpon>Analysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Lab assistant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lab assistant.Designer.cs">
+      <DependentUpon>Lab assistant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Laborant analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Laborant analysis.Designer.cs">
+      <DependentUpon>Laborant analysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders.Designer.cs">
+      <DependentUpon>Orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reagent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reagent.Designer.cs">
+      <DependentUpon>Reagent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reagents in analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reagents in analysis.Designer.cs">
+      <DependentUpon>Reagents in analysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Result.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Result.Designer.cs">
+      <DependentUpon>Result.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Visitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Visitor.Designer.cs">
+      <DependentUpon>Visitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Visitor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Visitor.Designer.cs">
-      <DependentUpon>Visitor.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="Forms\Analysis Orders.resx">
+      <DependentUpon>Analysis Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Analysis Type.resx">
+      <DependentUpon>Analysis Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Analysis.resx">
+      <DependentUpon>Analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lab assistant.resx">
+      <DependentUpon>Lab assistant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Laborant analysis.resx">
+      <DependentUpon>Laborant analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders.resx">
+      <DependentUpon>Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reagent.resx">
+      <DependentUpon>Reagent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reagents in analysis.resx">
+      <DependentUpon>Reagents in analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Result.resx">
+      <DependentUpon>Result.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Visitor.resx">
+      <DependentUpon>Visitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -82,9 +166,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Visitor.resx">
-      <DependentUpon>Visitor.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

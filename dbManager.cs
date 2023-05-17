@@ -1,36 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace SQL
 {
-    public class dbManager
+    public class DbManager
     {
-        private string conStr = @"Server=localhost;Database=laboratoria;Uid=root;Pwd=11111;";
+        private const string ConStr = @"Server=localhost;Database=laboratoria;Uid=root;Pwd=11111;";
         private MySqlConnection _mySqlConnection = new MySqlConnection();
         private MySqlCommand _mySqlCommand = new MySqlCommand();
-        public dbManager()
+        public DbManager()
         {
             _mySqlCommand.Connection = _mySqlConnection;
         }
 
-        private void FillGrid(DataGridView dataGridView, MySqlDataReader MyR)
+        private void FillGrid(DataGridView dataGridView, MySqlDataReader myR)
         {
             dataGridView.Columns.Clear();
-            for (int i = 0; i < MyR.FieldCount; i++)
+            for (int i = 0; i < myR.FieldCount; i++)
             {
-                dataGridView.Columns.Add("Col" + i.ToString(), MyR.GetName(i));
+                dataGridView.Columns.Add("Col" + i, myR.GetName(i));
             }
 
-            while (MyR.Read())
+            while (myR.Read())
             {
-                string[] s = new string[MyR.FieldCount];
-                for (int i = 0; i < MyR.FieldCount; i++)
+                object[] s = new object[myR.FieldCount];
+                for (int i = 0; i < myR.FieldCount; i++)
                 {
-                    s[i] = MyR[i].ToString();
+                    s[i] = myR[i].ToString();
                 }
 
                 dataGridView.Rows.Add(s);
@@ -62,15 +60,15 @@ namespace SQL
         
         public void ConnectTo()
         {
-            _mySqlConnection.ConnectionString = conStr;
+            _mySqlConnection.ConnectionString = ConStr;
         }
 
-        public List<List<Object>> SelectAll(string table_name)
+        public List<List<Object>> SelectAll(string tableName)
         {
             try
             {
                 var res = new List<List<Object>>();
-                _mySqlCommand.CommandText = "select * from " + table_name;
+                _mySqlCommand.CommandText = "select * from " + tableName;
                 _mySqlConnection.Open();
                 MySqlDataReader reader = _mySqlCommand.ExecuteReader();
                 while (reader.Read())

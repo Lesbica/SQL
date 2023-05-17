@@ -2,7 +2,7 @@
 
 namespace SQL
 {
-    partial class Visitor
+    partial class Reagents_in_analysis
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,6 @@ namespace SQL
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,33 +41,21 @@ namespace SQL
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(658, 426);
+            this.dataGridView1.Size = new System.Drawing.Size(503, 426);
             this.dataGridView1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(676, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 32);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Select All";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // Visitor
+            // Reagents_in_analysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 450);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Visitor";
-            this.Text = "Visitor";
+            this.Name = "Reagents_in_analysis";
+            this.Text = "Reagents_in_analysis";
+            this.Load += new System.EventHandler(this.Reagents_in_analysis_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
         }
-
-        private System.Windows.Forms.Button button1;
 
         private System.Windows.Forms.DataGridView dataGridView1;
 
