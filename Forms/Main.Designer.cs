@@ -234,7 +234,7 @@ namespace SQL
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(0, 21);
+            this.button13.Location = new System.Drawing.Point(6, 21);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(203, 35);
             this.button13.TabIndex = 0;
@@ -244,7 +244,7 @@ namespace SQL
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(0, 62);
+            this.button14.Location = new System.Drawing.Point(6, 62);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(203, 34);
             this.button14.TabIndex = 1;
@@ -254,7 +254,7 @@ namespace SQL
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(0, 102);
+            this.button15.Location = new System.Drawing.Point(6, 102);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(203, 34);
             this.button15.TabIndex = 2;
@@ -264,7 +264,7 @@ namespace SQL
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(0, 382);
+            this.button16.Location = new System.Drawing.Point(6, 382);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(203, 34);
             this.button16.TabIndex = 9;
@@ -274,7 +274,7 @@ namespace SQL
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(0, 142);
+            this.button17.Location = new System.Drawing.Point(6, 142);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(203, 34);
             this.button17.TabIndex = 3;
@@ -284,7 +284,7 @@ namespace SQL
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(0, 342);
+            this.button18.Location = new System.Drawing.Point(6, 342);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(203, 34);
             this.button18.TabIndex = 8;
@@ -294,7 +294,7 @@ namespace SQL
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(0, 182);
+            this.button19.Location = new System.Drawing.Point(6, 182);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(203, 34);
             this.button19.TabIndex = 4;
@@ -304,7 +304,7 @@ namespace SQL
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(0, 302);
+            this.button20.Location = new System.Drawing.Point(6, 302);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(203, 34);
             this.button20.TabIndex = 7;
@@ -314,7 +314,7 @@ namespace SQL
             // 
             // button21
             // 
-            this.button21.Location = new System.Drawing.Point(0, 222);
+            this.button21.Location = new System.Drawing.Point(6, 222);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(203, 34);
             this.button21.TabIndex = 5;
@@ -324,7 +324,7 @@ namespace SQL
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(0, 262);
+            this.button22.Location = new System.Drawing.Point(6, 262);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(203, 34);
             this.button22.TabIndex = 6;

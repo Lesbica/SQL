@@ -403,8 +403,71 @@ namespace SQL
             }
         }
 
+        public DataTable Select(String query)
+        {
+            try
+            {
+                _mySqlConnection.Open();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, _mySqlConnection);
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                return dataSet.Tables[0];
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                throw;
+            }
+            finally
+            {
+                _mySqlConnection.Close();
+            }
+        }    
+        
+        public DataTable SearchData(Dictionary<string, object> parameters, string tableName)
+        {
+            try
+            {
+                DataTable dataTable = new DataTable();
 
+                using (MySqlConnection connection = new MySqlConnection(ConStr))
+                {
+                    connection.Open();
 
+                    string query = $"SELECT * FROM {tableName} WHERE ";
+                    List<string> conditions = new List<string>();
+
+                    foreach (var parameter in parameters)
+                    {
+                        string condition = $"{parameter.Key} = @{parameter.Key}";
+                        conditions.Add(condition);
+                    }
+
+                    query += string.Join(" AND ", conditions);
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        foreach (var parameter in parameters)
+                        {
+                            command.Parameters.AddWithValue($"@{parameter.Key}", parameter.Value);
+                        }
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                }
+
+                return dataTable;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                throw;
+            }
+            
+        }
 
     }
 

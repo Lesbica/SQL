@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SQL
@@ -106,6 +108,56 @@ namespace SQL
             _dbManager.SelectAll("orders", dataGridView1);
 
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                
+                if (textBox1.Text == null && textBox2.Text == null && textBox4.Text == null && comboBox1.SelectedItem == null)
+                {
+                    MessageBox.Show("Введіть дані");
+                    checkBox1.Checked = false;
+                    return;
+                }
+                
+                Dictionary<string, object> searchParameters = new Dictionary<string, object>();
+
+                if (textBox1.Text != null && textBox1.Text.Length != 0)
+                {
+                    searchParameters.Add("OrderNum", Convert.ToInt32(textBox1.Text));
+                }
+
+                if (textBox2.Text != null && textBox2.Text.Length != 0)
+                {
+                    searchParameters.Add("TotalPrice", textBox2.Text);
+                }                
+                
+                if (textBox4.Text.Length != 0)
+                {
+                    searchParameters.Add("Priority", Convert.ToInt32(textBox4.Text));
+                }                
+                
+                if (comboBox1.SelectedItem != null)
+                {
+                    searchParameters.Add("Visitors", ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key);
+                }
+                
+
+                DataTable resultTable = _dbManager.SearchData(searchParameters, "orders");
+
+                dataGridView1.Columns.Clear();
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = resultTable;
+
+                dataGridView1.DataSource = bindingSource;
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+                _dbManager.SelectAll("orders", dataGridView1);
+            }
         }
     }
 }

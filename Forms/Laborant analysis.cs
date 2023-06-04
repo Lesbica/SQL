@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SQL
@@ -90,6 +92,46 @@ namespace SQL
             if (desiredItem2 != null)
             {
                 comboBox2.SelectedItem = desiredItem2;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                
+                if (comboBox1.SelectedItem == null && comboBox2.SelectedItem == null)
+                {
+                    MessageBox.Show("Введіть дані");
+                    checkBox1.Checked = false;
+                    return;
+                }
+                
+                Dictionary<string, object> searchParameters = new Dictionary<string, object>();
+
+                if (comboBox1.SelectedItem != null)
+                {
+                    searchParameters.Add("AnalCode", ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key);
+                }
+
+                if (comboBox2.SelectedItem != null)
+                {
+                    searchParameters.Add("LabAssistant", ((KeyValuePair<int, string>)comboBox2.SelectedItem).Key);
+                }
+                
+
+                DataTable resultTable = _dbManager.SearchData(searchParameters, "laborantanalysis");
+
+                dataGridView1.Columns.Clear();
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = resultTable;
+
+                dataGridView1.DataSource = bindingSource;
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+                _dbManager.SelectAll("laborantanalysis", dataGridView1);
             }
         }
     }

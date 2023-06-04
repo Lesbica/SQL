@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SQL
@@ -70,6 +72,51 @@ namespace SQL
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                
+                if (textBox1.Text == null && textBox2.Text == null && textBox3.Text == null)
+                {
+                    MessageBox.Show("Введіть дані");
+                    checkBox1.Checked = false;
+                    return;
+                }
+                
+                Dictionary<string, object> searchParameters = new Dictionary<string, object>();
+
+                if (textBox1.Text != null && textBox1.Text.Length != 0)
+                {
+                    searchParameters.Add("ID", Convert.ToInt32(textBox1.Text));
+                }
+
+                if (textBox2.Text != null && textBox2.Text.Length != 0)
+                {
+                    searchParameters.Add("FullName", textBox2.Text);
+                }                
+                
+                if (textBox3.Text.Length != 0)
+                {
+                    searchParameters.Add("Specialization", textBox3.Text);
+                }
+                
+
+                DataTable resultTable = _dbManager.SearchData(searchParameters, "labassistant");
+
+                dataGridView1.Columns.Clear();
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = resultTable;
+
+                dataGridView1.DataSource = bindingSource;
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+                _dbManager.SelectAll("labassistant", dataGridView1);
             }
         }
     }

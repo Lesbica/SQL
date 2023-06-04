@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SQL
@@ -72,5 +74,48 @@ namespace SQL
             
             _dbManager.SelectAll("result", dataGridView1);
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                if (string.IsNullOrEmpty(textBox1.Text) && string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text))
+                {
+                    MessageBox.Show("Введіть дані");
+                    checkBox1.Checked = false;
+                    return;
+                }
+                
+                Dictionary<string, object> searchParameters = new Dictionary<string, object>();
+                if (!string.IsNullOrEmpty(textBox1.Text))
+                {
+                    searchParameters.Add("CodeResult", Convert.ToInt32(textBox1.Text));
+                }
+
+                if (!string.IsNullOrEmpty(textBox2.Text))
+                {
+                    searchParameters.Add("ShortInfo", textBox2.Text);
+                }
+
+                if (!string.IsNullOrEmpty(textBox3.Text))
+                {
+                    searchParameters.Add("LongInfo", textBox3.Text);
+                }
+
+                DataTable resultTable = _dbManager.SearchData(searchParameters, "result");
+
+                dataGridView1.Columns.Clear();
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = resultTable;
+
+                dataGridView1.DataSource = bindingSource;
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+                _dbManager.SelectAll("result", dataGridView1);
+            }
+        }
+        
     }
 }

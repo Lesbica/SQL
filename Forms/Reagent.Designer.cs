@@ -44,6 +44,7 @@ namespace SQL
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,11 +159,22 @@ namespace SQL
             this.textBox4.Size = new System.Drawing.Size(152, 22);
             this.textBox4.TabIndex = 42;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Location = new System.Drawing.Point(441, 710);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(122, 23);
+            this.checkBox1.TabIndex = 49;
+            this.checkBox1.Text = "Вибірка";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Reagent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 745);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.button4);
@@ -183,6 +195,8 @@ namespace SQL
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.CheckBox checkBox1;
 
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox4;

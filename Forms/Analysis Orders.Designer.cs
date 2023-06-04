@@ -47,6 +47,7 @@ namespace SQL
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
@@ -190,11 +191,22 @@ namespace SQL
             this.dataGridView3.Size = new System.Drawing.Size(800, 426);
             this.dataGridView3.TabIndex = 45;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Location = new System.Drawing.Point(452, 797);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(122, 23);
+            this.checkBox1.TabIndex = 46;
+            this.checkBox1.Text = "Вибірка";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Analysis_Orders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 829);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.comboBox3);
@@ -218,6 +230,8 @@ namespace SQL
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.CheckBox checkBox1;
 
         private System.Windows.Forms.DataGridView dataGridView3;
 

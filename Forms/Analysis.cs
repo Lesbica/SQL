@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SQL
@@ -16,7 +18,8 @@ namespace SQL
 
         private void Analysis_Load(object sender, EventArgs e)
         {
-            _dbManager.SelectAll("analysis", dataGridView1);
+           _dbManager.SelectAll("analysis", dataGridView1);
+           //dataGridView1.DataSource = _dbManager.Select("select * from analysis");
             _dbManager.FillComboBoxWithData("analysistype", "CodeAnalType", "NameAnalType", comboBox1);
         }
 
@@ -94,5 +97,48 @@ namespace SQL
             
             _dbManager.SelectAll("analysis", dataGridView1);
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                Dictionary<string, object> searchParameters = new Dictionary<string, object>();
+                if (textBox1.Text.Length != 0)
+                {
+                    searchParameters.Add("AnalCode", Convert.ToInt32(textBox1.Text));
+                }
+
+                if (comboBox1.SelectedItem != null)
+                {
+                    searchParameters.Add("AnalysisType", ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key);
+                }
+
+                if (textBox3.Text.Length != 0)
+                {
+                    searchParameters.Add("Price", Convert.ToDouble(textBox3.Text));
+                }
+
+                if (textBox1.Text.Length == 0 && comboBox1.SelectedItem == null && textBox3.Text.Length == 0)
+                {
+                    MessageBox.Show("Введіть дані");
+                    checkBox1.Checked = false;
+                    return;
+                }
+
+                DataTable resultTable = _dbManager.SearchData(searchParameters, "analysis");
+
+                dataGridView1.Columns.Clear();
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = resultTable;
+
+                dataGridView1.DataSource = bindingSource;
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+                _dbManager.SelectAll("analysis", dataGridView1);
+            }
+        }
+
     }
 }

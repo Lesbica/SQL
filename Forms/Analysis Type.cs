@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SQL
@@ -71,6 +73,51 @@ namespace SQL
                                   $"WHERE CodeAnalType = {dataGridView1.Rows[rowIndex].Cells[0].Value}");
             
             _dbManager.SelectAll("analysistype", dataGridView1);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                
+                if (textBox1.Text == null && textBox2.Text == null && textBox3.Text == null)
+                {
+                    MessageBox.Show("Введіть дані");
+                    checkBox1.Checked = false;
+                    return;
+                }
+                
+                Dictionary<string, object> searchParameters = new Dictionary<string, object>();
+
+                if (textBox1.Text != null && textBox1.Text.Length != 0)
+                {
+                    searchParameters.Add("CodeAnalType", Convert.ToInt32(textBox1.Text));
+                }
+
+                if (textBox2.Text != null && textBox2.Text.Length != 0)
+                {
+                    searchParameters.Add("NameAnalType", textBox2.Text);
+                }                
+                
+                if (textBox3.Text.Length != 0)
+                {
+                    searchParameters.Add("DescriptionAnalType", textBox3.Text);
+                }
+                
+
+                DataTable resultTable = _dbManager.SearchData(searchParameters, "analysistype");
+
+                dataGridView1.Columns.Clear();
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = resultTable;
+
+                dataGridView1.DataSource = bindingSource;
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+                _dbManager.SelectAll("analysistype", dataGridView1);
+            }
         }
     }
 }

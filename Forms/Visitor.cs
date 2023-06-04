@@ -23,7 +23,7 @@ namespace SQL
             /*String[] fields = {"id", "fullname", "age", "allergies", "contacts" };
                      String[] values = {textBox1.Text, "'"+ textBox2.Text+ "'", "'" + textBox3.Text+ "'", "'"+textBox4.Text+ "'","'"+ textBox5.Text + "'"};
                      _dbManager.Insert("visitor",fields,values );*/
-            _dbManager.ExecuteSql($"insert into visitor(id, fullname, age, allergies, contacts) VALUES ({Convert.ToInt32(textBox1.Text)}, '{textBox2.Text}', {Convert.ToInt32(textBox3.Text)}, '{textBox4.Text}', '{textBox5.Text}')");
+            _dbManager.ExecuteSql($"insert into visitor(id, fullname, age, allergies, contacts) VALUES ({Convert.ToInt32(textBox1.Text)}, '{textBox2.Text}', {Convert.ToInt32(textBox3.Text)}, '{textBox5.Text}', '{textBox4.Text}')");
 
             _dbManager.SelectAll("visitor", dataGridView1);
         }
