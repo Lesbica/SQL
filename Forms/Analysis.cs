@@ -19,7 +19,7 @@ namespace SQL
         private void Analysis_Load(object sender, EventArgs e)
         {
            _dbManager.SelectAll("analysis", dataGridView1);
-           //dataGridView1.DataSource = _dbManager.Select("select * from analysis");
+
             _dbManager.FillComboBoxWithData("analysistype", "CodeAnalType", "NameAnalType", comboBox1);
         }
 

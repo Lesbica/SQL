@@ -468,6 +468,67 @@ namespace SQL
             }
             
         }
+        
+        public DataTable ExecuteQuery(string query, string value)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(ConStr))
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        char[] delimiters = { '@' };
+
+                        string[] words = query.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+                        if (words.Length > 1)
+                        {
+                            string result = words[1];
+                            command.Parameters.AddWithValue("@"+result, value);
+                        }
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                throw;
+            }
+
+            return dataTable;
+        }
+        
+        public DataTable ExecuteQuery(string query)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(ConStr))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return dataTable;
+        }
+
 
     }
 

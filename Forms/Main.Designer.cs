@@ -66,6 +66,7 @@ namespace SQL
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
+            this.button33 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -176,7 +177,7 @@ namespace SQL
             this.button11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button11.Location = new System.Drawing.Point(0, 507);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(820, 37);
+            this.button11.Size = new System.Drawing.Size(944, 37);
             this.button11.TabIndex = 10;
             this.button11.Text = "delete all";
             this.button11.UseVisualStyleBackColor = true;
@@ -188,7 +189,7 @@ namespace SQL
             this.button12.Enabled = false;
             this.button12.Location = new System.Drawing.Point(0, 470);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(820, 37);
+            this.button12.Size = new System.Drawing.Size(944, 37);
             this.button12.TabIndex = 11;
             this.button12.Text = "create all";
             this.button12.UseVisualStyleBackColor = true;
@@ -461,12 +462,23 @@ namespace SQL
             this.button32.UseVisualStyleBackColor = true;
             this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
+            // button33
+            // 
+            this.button33.Location = new System.Drawing.Point(819, 12);
+            this.button33.Name = "button33";
+            this.button33.Size = new System.Drawing.Size(75, 427);
+            this.button33.TabIndex = 15;
+            this.button33.Text = "Вибірка";
+            this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.button33_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(820, 544);
+            this.ClientSize = new System.Drawing.Size(944, 544);
+            this.Controls.Add(this.button33);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -480,6 +492,8 @@ namespace SQL
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button button33;
 
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;

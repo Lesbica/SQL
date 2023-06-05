@@ -568,5 +568,11 @@ namespace SQL
                 button26.Enabled = false;
             }
         }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            sample sample = new sample();
+            sample.ShowDialog();
+        }
     }
 }
