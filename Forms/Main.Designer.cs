@@ -67,9 +67,13 @@ namespace SQL
             this.button31 = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
             this.button33 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.conectToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -175,7 +179,7 @@ namespace SQL
             // button11
             // 
             this.button11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button11.Location = new System.Drawing.Point(0, 507);
+            this.button11.Location = new System.Drawing.Point(0, 572);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(944, 37);
             this.button11.TabIndex = 10;
@@ -187,7 +191,7 @@ namespace SQL
             // 
             this.button12.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button12.Enabled = false;
-            this.button12.Location = new System.Drawing.Point(0, 470);
+            this.button12.Location = new System.Drawing.Point(0, 535);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(944, 37);
             this.button12.TabIndex = 11;
@@ -207,7 +211,7 @@ namespace SQL
             this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Location = new System.Drawing.Point(30, 12);
+            this.groupBox1.Location = new System.Drawing.Point(27, 77);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(227, 427);
             this.groupBox1.TabIndex = 12;
@@ -226,7 +230,7 @@ namespace SQL
             this.groupBox3.Controls.Add(this.button20);
             this.groupBox3.Controls.Add(this.button21);
             this.groupBox3.Controls.Add(this.button22);
-            this.groupBox3.Location = new System.Drawing.Point(292, 12);
+            this.groupBox3.Location = new System.Drawing.Point(289, 77);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(227, 427);
             this.groupBox3.TabIndex = 13;
@@ -345,7 +349,7 @@ namespace SQL
             this.groupBox2.Controls.Add(this.button30);
             this.groupBox2.Controls.Add(this.button31);
             this.groupBox2.Controls.Add(this.button32);
-            this.groupBox2.Location = new System.Drawing.Point(566, 12);
+            this.groupBox2.Location = new System.Drawing.Point(563, 77);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(227, 427);
             this.groupBox2.TabIndex = 14;
@@ -464,7 +468,7 @@ namespace SQL
             // 
             // button33
             // 
-            this.button33.Location = new System.Drawing.Point(819, 12);
+            this.button33.Location = new System.Drawing.Point(816, 77);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(75, 427);
             this.button33.TabIndex = 15;
@@ -472,26 +476,58 @@ namespace SQL
             this.button33.UseVisualStyleBackColor = true;
             this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.databaseToolStripMenuItem });
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(944, 28);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.conectToToolStripMenuItem });
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.databaseToolStripMenuItem.Text = "Database";
+            // 
+            // conectToToolStripMenuItem
+            // 
+            this.conectToToolStripMenuItem.Name = "conectToToolStripMenuItem";
+            this.conectToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.conectToToolStripMenuItem.Text = "conectTo";
+            this.conectToToolStripMenuItem.Click += new System.EventHandler(this.conectToToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(944, 544);
+            this.ClientSize = new System.Drawing.Size(944, 609);
             this.Controls.Add(this.button33);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
+            this.Controls.Add(this.menuStrip1);
             this.Location = new System.Drawing.Point(15, 15);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem conectToToolStripMenuItem;
 
         private System.Windows.Forms.Button button33;
 

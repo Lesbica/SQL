@@ -574,5 +574,12 @@ namespace SQL
             sample sample = new sample();
             sample.ShowDialog();
         }
+
+        private void conectToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Conect conect = new Conect();
+            conect.ShowDialog();
+        }
+        
     }
 }

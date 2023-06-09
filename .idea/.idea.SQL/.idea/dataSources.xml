@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/laboratoria</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="laba15?@lkkte_nau" uuid="e2ed4bc7-10a7-4dbe-802d-811d62a49f28">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb:// jwkrush.com.ua:3306/kkte_nau</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

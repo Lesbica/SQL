@@ -1,22 +1,117 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 using Dapper;
 using MySql.Data.MySqlClient;
-using System.Text.RegularExpressions;
 
 namespace SQL
 {
     public class DbManager
     {
-        private const string ConStr = @"Server=localhost;Database=laboratoria;Uid=root;Pwd=11111;Charset=utf8mb4;";
-        private readonly MySqlConnection _mySqlConnection = new MySqlConnection();
-        private readonly MySqlCommand _mySqlCommand = new MySqlCommand();
+        private string ConStr = @"Server=localhost;Database=laboratoria;Uid=root;Pwd=11111;Charset=utf8mb4;";
+        private static MySqlConnection _mySqlConnection = new MySqlConnection();
+        private static MySqlCommand _mySqlCommand = new MySqlCommand();
+        private static DbManager instance;
         public DbManager()
         {
             _mySqlCommand.Connection = _mySqlConnection;
+        }       
+        
+        public DbManager(string conString)
+        {
+            _mySqlConnection = new MySqlConnection(conString);
+            _mySqlCommand = new MySqlCommand();
+            _mySqlCommand.Connection = _mySqlConnection;
+            ConStr=conString;
+        }
+        
+        public bool CheckConnection()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(ConStr))
+                {
+                    connection.Open();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static DbManager getInstance()
+        {
+            if (instance == null)
+                instance = new DbManager();
+            return instance;
+        }
+        public static DbManager getInstance(string conStr)
+        {
+            if (instance == null)
+                instance = new DbManager(conStr);
+            return instance;
+        }
+
+        public static void deleteInstance()
+        {
+            instance=null;
+        }
+        
+        public void Select(string query,DataGridView dataGridView)
+        {
+            DataTable dt = new DataTable();
+            _mySqlCommand.CommandText= query;
+            _mySqlConnection.Open();
+            MySqlDataReader myR = _mySqlCommand.ExecuteReader();
+            FillGrid(dataGridView, myR);
+            _mySqlConnection.Close();
+        }
+        
+        public void ExecuteTransaction(uint count, int reagcode, char oper)
+        {
+            _mySqlConnection.Open();
+            MySqlTransaction transaction;
+            
+            transaction = _mySqlConnection.BeginTransaction();
+            _mySqlCommand.Transaction = transaction;
+
+            try
+            {
+                _mySqlCommand.Parameters.Clear();
+                if (oper == '-')
+                {
+                    _mySqlCommand.CommandText = "UPDATE Reagent SET Available = Available - @count WHERE ReagCode = @reagcode";
+                    _mySqlCommand.Parameters.AddWithValue("@count", count);
+                    _mySqlCommand.Parameters.AddWithValue("@reagcode", reagcode);
+                    _mySqlCommand.ExecuteNonQuery();
+                
+                    transaction.Commit(); 
+                    MessageBox.Show("Транзакция выполнена успешно.");
+                    _mySqlConnection.Close();
+                }
+                else if (oper == '+')
+                {
+                    _mySqlCommand.CommandText = "UPDATE Reagent SET Available = Available + @count WHERE ReagCode = @reagcode";
+                    _mySqlCommand.Parameters.AddWithValue("@count", count);
+                    _mySqlCommand.Parameters.AddWithValue("@reagcode", reagcode);
+                    _mySqlCommand.ExecuteNonQuery();
+                
+                    transaction.Commit(); 
+                    MessageBox.Show("Транзакция выполнена успешно.");
+                    _mySqlConnection.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                _mySqlConnection.Close();
+                MessageBox.Show("Ошибка выполнения транзакции: " + ex.Message);
+            }
         }
 
         private void FillGrid(DataGridView dataGridView, MySqlDataReader myR)
@@ -65,6 +160,13 @@ namespace SQL
         public void ConnectTo()
         {
             _mySqlConnection.ConnectionString = ConStr;
+        }
+        
+        public static string ReadConnectionStringFromFile(string filePath)
+        {
+            byte[] bytes = File.ReadAllBytes(filePath);
+            string connectionString = System.Text.Encoding.UTF8.GetString(bytes);
+            return connectionString;
         }
 
         public List<List<Object>> SelectAll(string tableName)
@@ -528,9 +630,10 @@ namespace SQL
 
             return dataTable;
         }
-
-
+        
+        
     }
+    
 
     public class KeyValuePair<TKey, TValue>
     {

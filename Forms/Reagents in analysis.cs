@@ -29,12 +29,15 @@ namespace SQL
             var selectedItem2 = ((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
             _dbManager.ExecuteSql($"insert into reagentsinanalysis(usedcount, analcode, reagcode) values ( {Convert.ToInt32(textBox2.Text)}," +
                                   $"'{selectedItem}', '{selectedItem2}')");
+            _dbManager.ExecuteTransaction(Convert.ToUInt32(textBox2.Text), selectedItem2, '-');
             _dbManager.SelectAll("reagentsinanalysis", dataGridView1);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             var selectedItem = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
+            var selectedItem2 = ((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
+            _dbManager.ExecuteTransaction(Convert.ToUInt32(textBox2.Text), selectedItem2, '+');
             _dbManager.Delete("reagentsinanalysis", "AnalCode="+selectedItem);
             comboBox2.Text = "";
             comboBox1.Text = "";

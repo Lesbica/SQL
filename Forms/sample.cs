@@ -46,11 +46,23 @@ namespace SQL
             string query = "SELECT Reagent.NameReagent AS Name_Reagent, " +
                            "Reagent.Available AS Available, " +
                            "AnalysisType.NameAnalType AS Name_Analysis, " +
-                           "ReagentsInAnalysis.UsedCount, (Reagent.Available - ReagentsInAnalysis.UsedCount) AS Remaining " +
+                           "ReagentsInAnalysis.UsedCount " +
                            "FROM Reagent " +
                            "INNER JOIN ReagentsInAnalysis ON Reagent.ReagCode = ReagentsInAnalysis.ReagCode " +
                            "INNER JOIN Analysis ON ReagentsInAnalysis.AnalCode = Analysis.AnalCode " +
                            "INNER JOIN AnalysisType ON Analysis.AnalysisType = AnalysisType.CodeAnalType";
+            DataTable resultTable = _dbManager.ExecuteQuery(query);
+            dataGridView1.DataSource = resultTable;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Clear();
+            string query = "SELECT AnalysisType.NameAnalType, LabAssistant.FullName " +
+                           "FROM Analysis " +
+                           "JOIN LaborantAnalysis ON Analysis.AnalCode = LaborantAnalysis.AnalCode " +
+                           "JOIN AnalysisType ON Analysis.AnalysisType = AnalysisType.CodeAnalType " +
+                           "JOIN LabAssistant ON LaborantAnalysis.LabAssistant = LabAssistant.ID";
             DataTable resultTable = _dbManager.ExecuteQuery(query);
             dataGridView1.DataSource = resultTable;
         }
