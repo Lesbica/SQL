@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Singltone2;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -7,69 +8,92 @@ namespace SQL
     public partial class Main : Form
     {
         private readonly DbManager _dbManager;
+        private Logger logger;
         public Main()
         {
             InitializeComponent();
             _dbManager = new DbManager();
             _dbManager.ConnectTo();
+
+            logger = Logger.GetInstance("log");
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Visitor");
+            logger.Save();
             Visitor visitor = new Visitor();
             visitor.ShowDialog();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Result");
+            logger.Save();
             Result result = new Result();
             result.ShowDialog();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Reagents_in_analysis");
+            logger.Save();
             Reagents_in_analysis reagentsInAnalysis = new Reagents_in_analysis();
             reagentsInAnalysis.ShowDialog();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Reagent");
+            logger.Save();
             Reagent reagent = new Reagent();
             reagent.ShowDialog();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Orders");
+            logger.Save();
             Orders orders = new Orders();
             orders.ShowDialog();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Laborant_analysis");
+            logger.Save();
             Laborant_analysis laborantAnalysis = new Laborant_analysis();
             laborantAnalysis.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Lab_assistant");
+            logger.Save();
             Lab_assistant labAssistant = new Lab_assistant();
             labAssistant.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Analysis_Type");
+            logger.Save();
             Analysis_Type analysisType = new Analysis_Type();
             analysisType.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Analysis_Orders");
+            logger.Save();
             Analysis_Orders analysisOrders = new Analysis_Orders();
             analysisOrders.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            logger.AddLogg("Show Analysis");
+            logger.Save();
             Analysis analysis = new Analysis();
             analysis.ShowDialog();
         }
@@ -77,9 +101,9 @@ namespace SQL
         private void button11_Click(object sender, EventArgs e)
         {
             if (_dbManager.TableExists("visitor") && _dbManager.TableExists("orders") &&
-                _dbManager.TableExists("analysistype") && _dbManager.TableExists("analysis") && 
-                _dbManager.TableExists("labassistant") && _dbManager.TableExists("result") && 
-                _dbManager.TableExists("analysisorders") && _dbManager.TableExists("laborantanalysis") && 
+                _dbManager.TableExists("analysistype") && _dbManager.TableExists("analysis") &&
+                _dbManager.TableExists("labassistant") && _dbManager.TableExists("result") &&
+                _dbManager.TableExists("analysisorders") && _dbManager.TableExists("laborantanalysis") &&
                 _dbManager.TableExists("reagent") && _dbManager.TableExists("reagentsinanalysis"))
             {
                 if (MessageBox.Show(@"you real want delete all table with all data?", @"Delete all tables",
@@ -122,7 +146,7 @@ namespace SQL
 
         private void button12_Click(object sender, EventArgs e)
         {
-            if (!_dbManager.TableExists("visitor") && !_dbManager.TableExists("orders") && !_dbManager.TableExists("analysistype") && 
+            if (!_dbManager.TableExists("visitor") && !_dbManager.TableExists("orders") && !_dbManager.TableExists("analysistype") &&
                 !_dbManager.TableExists("analysis") && !_dbManager.TableExists("labassistant") && !_dbManager.TableExists("result") &&
                 !_dbManager.TableExists("analysisorders") && !_dbManager.TableExists("laborantanalysis") && !_dbManager.TableExists("reagent") &&
                 !_dbManager.TableExists("reagentsinanalysis"))
@@ -186,38 +210,38 @@ namespace SQL
                 "foreign key (AnalCode) references Analysis(AnalCode)," +
                 "foreign key (ReagCode) references Reagent(ReagCode));"
             };
-            _dbManager.CreateTables(tableQueries);
-            button12.Enabled = false;
-            button11.Enabled = true;
-            for (int i = groupBox1.Controls.Count - 1; i >= 0; i--)
-            {
-                if (groupBox1.Controls[i] is Button)
+                _dbManager.CreateTables(tableQueries);
+                button12.Enabled = false;
+                button11.Enabled = true;
+                for (int i = groupBox1.Controls.Count - 1; i >= 0; i--)
                 {
-                    groupBox1.Controls[i].Enabled = true;
+                    if (groupBox1.Controls[i] is Button)
+                    {
+                        groupBox1.Controls[i].Enabled = true;
+                    }
                 }
-            }
-            
-            for (int i = groupBox2.Controls.Count - 1; i >= 0; i--)
-            {
-                if (groupBox2.Controls[i] is Button)
-                {
-                    groupBox2.Controls[i].Enabled = false;
-                }
-            }
 
-            for (int i = groupBox3.Controls.Count - 1; i >= 0; i--)
-            {
-                if (groupBox3.Controls[i] is Button)
+                for (int i = groupBox2.Controls.Count - 1; i >= 0; i--)
                 {
-                    groupBox3.Controls[i].Enabled = true;
+                    if (groupBox2.Controls[i] is Button)
+                    {
+                        groupBox2.Controls[i].Enabled = false;
+                    }
                 }
-            }
+
+                for (int i = groupBox3.Controls.Count - 1; i >= 0; i--)
+                {
+                    if (groupBox3.Controls[i] is Button)
+                    {
+                        groupBox3.Controls[i].Enabled = true;
+                    }
+                }
             }
             else
             {
                 button12.Enabled = false;
             }
-            
+
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -228,6 +252,8 @@ namespace SQL
                 button13.Enabled = false;
                 button23.Enabled = true;
                 button1.Enabled = false;
+                logger.AddLogg("Delete analysis");
+                logger.Save();
             }
         }
 
@@ -249,6 +275,8 @@ namespace SQL
                 button13.Enabled = true;
                 button1.Enabled = true;
                 button23.Enabled = false;
+                logger.AddLogg("Create analysis");
+                logger.Save();
             }
         }
 
@@ -268,7 +296,7 @@ namespace SQL
                 {"visitor", (button16, button10, button26)}
             };
             int count = 0;
-            
+
             foreach (var item in tableButtonMap)
             {
                 string tableName = item.Key;
@@ -299,6 +327,8 @@ namespace SQL
                 button14.Enabled = false;
                 button24.Enabled = true;
                 button2.Enabled = false;
+                logger.AddLogg("Delete analysisorders");
+                logger.Save();
             }
         }
 
@@ -335,6 +365,8 @@ namespace SQL
                 button14.Enabled = true;
                 button2.Enabled = true;
                 button24.Enabled = false;
+                logger.AddLogg("Create analysisorders");
+                logger.Save();
             }
         }
 
@@ -346,6 +378,8 @@ namespace SQL
                 button15.Enabled = false;
                 button25.Enabled = true;
                 button3.Enabled = false;
+                logger.AddLogg("Delete analysistype");
+                logger.Save();
             }
         }
 
@@ -361,6 +395,8 @@ namespace SQL
                 button15.Enabled = true;
                 button3.Enabled = true;
                 button25.Enabled = false;
+                logger.AddLogg("Create analysistype");
+                logger.Save();
             }
         }
 
@@ -372,6 +408,8 @@ namespace SQL
                 button17.Enabled = false;
                 button27.Enabled = true;
                 button4.Enabled = false;
+                logger.AddLogg("Delete labassistant");
+                logger.Save();
             }
         }
 
@@ -387,6 +425,8 @@ namespace SQL
                 button17.Enabled = true;
                 button4.Enabled = true;
                 button27.Enabled = false;
+                logger.AddLogg("Create labassistant");
+                logger.Save();
             }
         }
 
@@ -398,6 +438,8 @@ namespace SQL
                 button19.Enabled = false;
                 button29.Enabled = true;
                 button5.Enabled = false;
+                logger.AddLogg("Delete laborantanalysis");
+                logger.Save();
             }
         }
 
@@ -418,6 +460,8 @@ namespace SQL
                 button19.Enabled = true;
                 button5.Enabled = true;
                 button29.Enabled = false;
+                logger.AddLogg("Create laborantanalysis");
+                logger.Save();
             }
         }
 
@@ -429,6 +473,8 @@ namespace SQL
                 button21.Enabled = false;
                 button31.Enabled = true;
                 button6.Enabled = false;
+                logger.AddLogg("Delete orders");
+                logger.Save();
             }
         }
 
@@ -452,6 +498,8 @@ namespace SQL
                 button21.Enabled = true;
                 button6.Enabled = true;
                 button31.Enabled = false;
+                logger.AddLogg("Create orders");
+                logger.Save();
             }
         }
 
@@ -463,6 +511,8 @@ namespace SQL
                 button22.Enabled = false;
                 button32.Enabled = true;
                 button7.Enabled = false;
+                logger.AddLogg("Delete reagent");
+                logger.Save();
             }
         }
 
@@ -479,6 +529,8 @@ namespace SQL
                 button22.Enabled = true;
                 button7.Enabled = true;
                 button32.Enabled = false;
+                logger.AddLogg("Create reagent");
+                logger.Save();
             }
         }
 
@@ -490,6 +542,8 @@ namespace SQL
                 button20.Enabled = false;
                 button30.Enabled = true;
                 button8.Enabled = false;
+                logger.AddLogg("Delete reagentsinanalysis");
+                logger.Save();
             }
         }
 
@@ -501,7 +555,7 @@ namespace SQL
                 {
                     button32_Click(sender, e);
                 }
-                
+
                 _dbManager.CreateTable("ReagentsInAnalysis",
                     "UsedCount int not null," +
                     "AnalCode int not null," +
@@ -512,6 +566,8 @@ namespace SQL
                 button20.Enabled = true;
                 button8.Enabled = true;
                 button30.Enabled = false;
+                logger.AddLogg("Create reagentsinanalysis");
+                logger.Save();
             }
         }
 
@@ -523,6 +579,8 @@ namespace SQL
                 button18.Enabled = false;
                 button28.Enabled = true;
                 button9.Enabled = false;
+                logger.AddLogg("Delete result");
+                logger.Save();
             }
         }
 
@@ -538,6 +596,8 @@ namespace SQL
                 button18.Enabled = true;
                 button9.Enabled = true;
                 button28.Enabled = false;
+                logger.AddLogg("Create result");
+                logger.Save();
             }
         }
 
@@ -549,6 +609,8 @@ namespace SQL
                 button16.Enabled = false;
                 button26.Enabled = true;
                 button10.Enabled = false;
+                logger.AddLogg("Delete visitor");
+                logger.Save();
             }
         }
 
@@ -566,6 +628,8 @@ namespace SQL
                 button16.Enabled = true;
                 button10.Enabled = true;
                 button26.Enabled = false;
+                logger.AddLogg("Create visitor");
+                logger.Save();
             }
         }
 
@@ -580,6 +644,6 @@ namespace SQL
             Conect conect = new Conect();
             conect.ShowDialog();
         }
-        
+
     }
 }

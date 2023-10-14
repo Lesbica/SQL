@@ -242,5 +242,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Downloads\SQL\Singltone2\Singltone2.csproj">
+      <Project>{4bf93e4a-1a35-4b21-8404-e7ebab9c4371}</Project>
+      <Name>Singltone2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
